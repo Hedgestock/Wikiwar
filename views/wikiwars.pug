@@ -1,0 +1,24 @@
+extends shared/layout
+
+block scripts
+    script(src="/scripts/wikiwar.js")
+
+block content
+    body(onLoad="initClock()")
+        div(style="float: left; padding: 15px; background-color: orange;")
+            h2 Current Page:
+            h3#currentPageName #{startPage}
+
+        div(style="float: left; padding: 15px; background-color: red;")
+            h2 Start Page:
+            h3#startPageName
+                a(href=`${urlBase}${startPage}` target="_blank") #{startPage}
+
+        div(style="float: left; padding: 15px; background-color: green;")
+            h2 End Page:
+            h3#endPageName 
+                a(href=`${urlBase}${endPage}` target="_blank") #{endPage}
+
+        p#chrono(onclick="stopClock()") chrono
+
+        iframe(src=`/wiki/${startPage}` height="700" width="100%")

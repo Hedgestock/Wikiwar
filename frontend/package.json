@@ -1,0 +1,62 @@
+{
+  "name": "wikiwar",
+  "version": "1.1.0",
+  "description": "A small wikiwar app",
+  "scripts": {
+    "build": "babel src --out-dir lib --extensions '.ts,.tsx'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hedgestock/Wikiwar.git"
+  },
+  "keywords": [
+    "Wikipedia",
+    "Wikiwar",
+    "Wikirace"
+  ],
+  "author": "Arthur PAMART",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hedgestock/Wikiwar/issues"
+  },
+  "homepage": "https://github.com/Hedgestock/Wikiwar#readme",
+  "dependencies": {
+    "pug": "^2.0.4",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-react": "^7.6.3",
+    "@babel/preset-typescript": "^7.6.0",
+    "@types/pug": "^2.0.4",
+    "@types/react": "^16.9.11",
+    "@types/react-dom": "^16.9.3",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-plugin-transform-react-pug": "^7.0.1",
+    "source-map-loader": "^0.2.4",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.6.4",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9"
+  },
+  "babel": {
+    "presets": [
+      "@babel/react",
+      "@babel/typescript",
+      [
+        "@babel/env",
+        {
+          "modules": false
+        }
+      ]
+    ],
+    "plugins": [
+      "transform-react-pug",
+      "transform-react-jsx"
+    ]
+  }
+}

@@ -7,7 +7,7 @@ module.exports = {
 
     output: {
         filename: "bundle.js",
-        path: __dirname + "/frontend/dist",
+        path: __dirname + "/frontend/static/dist",
     },
     // Enable sourcemaps for debugging webpack's output.
     devtool: "source-map",
@@ -21,7 +21,8 @@ module.exports = {
         rules: [
             {
                 test: /\.ts(x?)$/,
-                exclude: /node_modules/,
+                exclude: ["/node_modules/",
+                    "/backend/"],
                 loader: 'babel-loader',
             },
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
@@ -37,8 +38,5 @@ module.exports = {
     // assume a corresponding global variable exists and use that instead.
     // This is important because it allows us to avoid bundling all of our
     // dependencies, which allows browsers to cache those libraries between builds.
-    externals: {
-        "react": "React",
-        "react-dom": "ReactDOM",
-    }
+    externals: {}
 };

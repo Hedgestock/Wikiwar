@@ -3,8 +3,7 @@
     "sourceMap": true,
     "noImplicitAny": true,
     "module": "commonjs",
-    "noEmit": true,
-    "target": "es6",
+    "target": "es5",
     "jsx": "react"
   }
 }

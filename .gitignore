@@ -1,4 +1,4 @@
 node_modules
 .idea
-backend/server.js
+backend/**/*.js
 frontend/static/dist

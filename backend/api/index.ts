@@ -1,5 +1,11 @@
 import express from "express"
+
+import wiki from "./wiki";
+
+
 const router = express.Router();
+
+router.use('/wiki', wiki);
 
 /* GET api home page. */
 router.get('/', function(req, res) {

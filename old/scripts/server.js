@@ -13,7 +13,7 @@ app.use(express.static(__dirname + "/static"));
 app.set("view engine", "pug");
 
 // A sample route
-app.get("/", (req, res) => res.render("index"));
+app.get("/", (req, res) => res.render("index.ts"));
 
 
 app.get("/Wikiwars", (req, res) => Promise.all([fetchRandomPage(), fetchRandomPage()])

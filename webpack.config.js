@@ -1,5 +1,5 @@
 module.exports = {
-    mode: "production",
+    mode: "development",
 
     entry: {
         app: "./frontend/src/index.tsx",
@@ -39,6 +39,6 @@ module.exports = {
     // This is important because it allows us to avoid bundling all of our
     // dependencies, which allows browsers to cache those libraries between builds.
     externals: {},
-    watch: true
+    // watch: true
 
 };

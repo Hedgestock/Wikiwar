@@ -54,6 +54,6 @@ function generateDot() {
     for (let i = 0, len = graphPath.length; i < len - 1; i++) {
         res += `\"${graphPath[i]}\" -> \"${graphPath[i + 1]}\";\n`;
     }
-    res += "}"
+    res += "}";
     return res;
 }

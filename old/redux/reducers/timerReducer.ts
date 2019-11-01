@@ -23,7 +23,8 @@ function timerReducer(state = initialState, action: IAction) {
             clearInterval(state.interval);
         }
         return {...state, stopTime: action.payload.time, interval: -1};
-    }return state;
+    }
+    return state;
 }
 
 export default timerReducer;

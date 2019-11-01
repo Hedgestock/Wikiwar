@@ -8,4 +8,8 @@ export const styles = (theme: Theme) => ({
         textDecoration:"none",
         color:"inherit",
     },
+    wwar_iframe: {
+        width: "100%",
+        height: "700px",
+    },
 });

@@ -6,6 +6,7 @@
     "all": "npm run build-front && npm run build-back && npm run server",
     "build-front": "webpack",
     "build-back": "tsc -p ./backend/",
+    "build-server": "npm run build-back && npm run server",
     "pnp": "npm i && npm run all",
     "server": "node backend/server.js"
   },

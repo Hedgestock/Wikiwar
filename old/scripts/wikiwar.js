@@ -21,6 +21,7 @@ function updateCurrentPageName(currentPage) {
 let initTime;
 let currTime;
 let interval;
+
 const sseSource = new EventSource('/event-stream');
 
 function initClock() {

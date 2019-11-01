@@ -10,7 +10,6 @@ export function sseInit(setCurrentPage: (pagename: any) => void) {
         const source = new EventSource(`${apiUrl}event_stream`);
 
         source.addEventListener('message', function (e) {
-             console.log("message", e.data);
             setCurrentPage(e.data);
         }, false);
 

@@ -29,14 +29,17 @@ const WikiwarPage = (props: IWikiwarPageProps) => {
     const startGame = async () => {
         let pageName: string = await getRandomPageName();
         setStartPage(pageName);
-        console.log("start", startPage);
         setCurrentPage(pageName);
-        console.log("current", currentPage);
         pageName = await getRandomPageName();
         setGoalPage(pageName);
         // @ts-ignore
         timerRef.current.start();
     };
+
+    if (currentPage && currentPage === goalPage) {
+        // @ts-ignore
+        timerRef.current.stop();
+    }
 
     return (
         <div className={classes.wwar_page}>
@@ -44,7 +47,7 @@ const WikiwarPage = (props: IWikiwarPageProps) => {
             <Typography>s: {startPage}</Typography>
             <Typography>c: {currentPage}</Typography>
             <Typography>g: {goalPage}</Typography>
-            <Button onClick={startGame}>Click</Button>
+            <Button onClick={startGame}>Start</Button>
             <iframe className={classes.wwar_iframe} src={`${apiUrl}wiki/${startPage}`}/>
         </div>
     );

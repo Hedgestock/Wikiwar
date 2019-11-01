@@ -22,7 +22,6 @@ export let actualName = {
     res: null,
     pagename: "",
     notify() {
-        console.log("URLLLLLLL", decodeURI(this.pagename));
         // @ts-ignore FIXME
         this.res.write(`data: ${decodeURI(this.pagename)}\n\n`)
     }

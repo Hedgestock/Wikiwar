@@ -19,7 +19,7 @@ app.get("/", (req, res) => res.render("index.ts"));
 app.get("/Wikiwars", (req, res) => Promise.all([fetchRandomPage(), fetchRandomPage()])
     .then(pagesName => { res.render("wikiwars", { urlBase: "https://en.wikipedia.org/wiki/", startPage: decodeURI(pagesName[0]), endPage: decodeURI(pagesName[1]) }) }));
 
-app.get("/wiki/:pagename", (req, res) => getWikiPage(encodeURI(req.params.pagename)).then(html => {
+app.get("/wiki/:pagename", (req, res) => getWikiPage(encodeURIComponent(req.params.pagename)).then(html => {
     nameMissmatch.notify();
     return res.send(html)
 }).catch(e => res.send("ERROR: " + e + "\n(Maybe you should'nt try to reach that now ?)")));

@@ -1,5 +1,6 @@
 import fetch from "node-fetch";
 import {act} from "react-dom/test-utils";
+import {wikipediaRestHtmlUrl, wikipediaUrl} from "../../env";
 
 
 export function getTitle(url: string): string { //this get everything after the last "/"
@@ -27,10 +28,8 @@ export let actualName = {
     }
 };
 
-//setTimeout(() => setInterval(()=> {actualName.pagename = new Date().getTime().toString(); actualName.notify();}, 100),4000);
-
 export function getWikiPage(pagename: string): Promise<string> {
-    return fetch("https://en.wikipedia.org/api/rest_v1/page/html/" + pagename)
+    return fetch(`${wikipediaRestHtmlUrl}${pagename}`)
         .then(res => {
             actualName.pagename = getTitle(res.url);//Put the name after redirection into "actualName"
             actualName.notify();// Push the actual page name to the front
@@ -40,6 +39,6 @@ export function getWikiPage(pagename: string): Promise<string> {
 }
 
 export function fetchRandomPage(): Promise<string> {
-    return fetch("https://en.wikipedia.org/wiki/Special:Random")
+    return fetch(`${wikipediaUrl}Special:Random`)
         .then(res => decodeURI(getTitle(res.url)));
 }

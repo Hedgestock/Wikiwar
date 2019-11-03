@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:pagename(*)', (req, res) => {
-    getWikiPage(encodeURI(req.params.pagename))
+    getWikiPage(encodeURIComponent(req.params.pagename))
         .then((html: string) => res.send(html))//Send the corrected html to the front
         .catch(e => res.send("ERROR: " + e + "\n(Maybe you should'nt try to reach that now ?)"))
 });

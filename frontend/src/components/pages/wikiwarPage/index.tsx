@@ -4,7 +4,7 @@ import {Button, Typography, withStyles} from "@material-ui/core";
 
 import Timer from "./timer";
 import {styles} from "../../../../static/wikiwar-style";
-import {apiUrl} from "../../../../../env";
+import {apiUrl, wikipediaUrl} from "../../../../../env";
 import {getRandomPageName, sseInit} from "../../../helpers";
 
 interface IWikiwarPageProps {
@@ -44,9 +44,9 @@ const WikiwarPage = (props: IWikiwarPageProps) => {
     return (
         <div className={classes.wwar_page}>
             <Timer ref={timerRef}/>
-            <Typography>s: {startPage}</Typography>
+            <Typography>s: <a href={`${wikipediaUrl}${startPage}`} target="_blank">{startPage}</a></Typography>
             <Typography>c: {currentPage}</Typography>
-            <Typography>g: {goalPage}</Typography>
+            <Typography>g: <a href={`${wikipediaUrl}${goalPage}`} target="_blank">{goalPage}</a></Typography>
             <Button onClick={startGame}>Start</Button>
             <iframe className={classes.wwar_iframe} src={`${apiUrl}wiki/${startPage}`}/>
         </div>

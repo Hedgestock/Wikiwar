@@ -1,6 +1,6 @@
 import express from "express"
 
-import {actualName, getTitle, getWikiPage} from "./helpers";
+import {getWikiPage} from "./helpers";
 
 const router = express.Router();
 

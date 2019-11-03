@@ -13,7 +13,7 @@ router.get('/', function(req, res) {
     res.send({route:"api home"});
 });
 
-/*t a random wiki page*/
+/*GET a random wiki page*/
 router.get('/random', function(req, res) {
     fetchRandomPage().then((pagename) => res.send(pagename));
 });

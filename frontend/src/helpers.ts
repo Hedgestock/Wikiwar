@@ -10,11 +10,12 @@ export function sseInit(setCurrentPage: (pagename: any) => void) {
         const source = new EventSource(`${apiUrl}event_stream`);
 
         source.addEventListener('message', function (e) {
+            console.log(e.data);
             setCurrentPage(e.data);
         }, false);
 
         source.addEventListener('open', function (e) {
-            console.log("Connection was opened")
+            console.log("Connection was opened");
         }, false);
 
         source.addEventListener('error', function (e) {

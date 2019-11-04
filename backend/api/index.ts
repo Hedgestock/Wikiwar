@@ -1,10 +1,12 @@
 import express from "express"
+import session from "express-session"
 
 import wiki from "./wiki";
 import {actualName, fetchRandomPage} from "./helpers";
 
-
 const router = express.Router();
+
+router.use(session({secret: "wikiwarscrt"}));
 
 router.use('/wiki', wiki);
 

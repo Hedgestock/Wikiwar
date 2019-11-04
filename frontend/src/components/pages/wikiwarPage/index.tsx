@@ -32,12 +32,12 @@ const WikiwarPage = (props: IWikiwarPageProps) => {
         setCurrentPage(pageName);
         pageName = await getRandomPageName();
         setGoalPage(pageName);
-        // @ts-ignore
+        // @ts-ignore FIXME
         timerRef.current.start();
     };
 
     if (currentPage && currentPage === goalPage) {
-        // @ts-ignore
+        // @ts-ignore FIXME
         timerRef.current.stop();
     }
 

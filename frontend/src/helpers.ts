@@ -19,7 +19,7 @@ export function sseInit(setCurrentPage: (pagename: any) => void) {
         }, false);
 
         source.addEventListener('error', function (e) {
-            // @ts-ignore
+            // @ts-ignore FIXME
             if (e.readyState == EventSource.CLOSED) {
                 console.log("Connection was closed");
             }

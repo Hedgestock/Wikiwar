@@ -4,14 +4,25 @@ import {getWikiPage} from "./helpers";
 
 const router = express.Router();
 
+
 /* GET wiki home page. */
 router.get('/', (req, res) => {
-    res.send({route: "wiki home"});
+    if (req.session!.page_views) {
+        req.session!.page_views++;
+    } else {
+        req.session!.page_views = 1;
+    }
+    res.send({route: "wiki home" + req.session!.page_views});
 });
 
 router.get('/:pagename(*)', (req, res) => {
     getWikiPage(encodeURIComponent(req.params.pagename))
-        .then((html: string) => res.send(html))//Send the corrected html to the front
+        .then((html: string) => {
+            res.header("Cache-Control", "no-cache, no-store");
+            res.header("Pragma", "no-cache");
+            res.header("Expires", "-1");
+            res.send(html);
+        })//Send the corrected html to the front
         .catch(e => res.send("ERROR: " + e + "\n(Maybe you should'nt try to reach that now ?)"))
 });
 

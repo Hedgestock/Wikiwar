@@ -8,16 +8,17 @@
 - [ ] Graph of pages gone through
 - [ ] Graphviz
 - [x] Leaderboard
+- [ ] Add a db
 - [ ] Options to manually set the start and goal pages
 - [ ] Number of click mode
-- [ ] Number of pages opened mode
-- [ ] User profiles or at least anonymous sessions
+- [x] Number of pages opened mode
+- [x] User profiles or at least anonymous sessions
 - [ ] Online room set up with invitations
 - [ ] Online room set up with randoms
 - [ ] Add difficulty levels
 
 ##Anti-cheat
-- [x] Think about and find a solution to prevent javascript/html injection (Maybe check for no jump of links with api that gives links to the page)
+- [ ] Think about and find a solution to prevent javascript/html injection (Maybe check for no jump of links with api that gives links to the page)
 - [x] Think about and find a solution to prevent false timer with javascript/html injection
 - [x] Add user sessions
 

@@ -17,27 +17,36 @@ export let serverData = {
         "graph": ["Newton_House_Museum", "Historic_house_museum", "International_Council_of_Museums", "Health_Research_Board"],
         startPage: "Newton_House_Museum",
         "goalPage": "Health_Research_Board",
-        "ID": "Zokodm_5sD24g-rASGBWzV8SpesKO4ZL"
+        "ID": "Zokodm_5sD24g-rASGBWzV8SpesKO4ZL",
+        username: "test",
     }, {
         startPage: "Sidney_Sussex_College",
         "startTime": 1572865542174,
         "endTime": 1572865583304,
         "graph": ["Sidney_Sussex_College,_Cambridge", "University_of_Cambridge", "Cambridge", "Cambridge,_Massachusetts", "United_States", "1896_in_the_United_States"],
         "goalPage": "1896_in_the_United_States",
-        "ID": "Zokodm_5sD24g-rASGBWzV8SpesKO4ZL"
+        "ID": "Zokodm_5sD24g-rASGBWzV8SpesKO4ZL",
+        username: "test2",
     }]
 };
 
-router.get('*', function (req, res, next) {
-    if (req.session!.notFirst) {
-    } else {
-        req.session!.notFirst = true;
-        // @ts-ignore
-        sessionsData[req.sessionID!.toString()] = {startTime: -1, endTime: -1, graph: [], goalPage: null, startPage: null};
-    }
-
-    next();
-});
+// router.get('*', function (req, res, next) {
+//     if (req.session!.notFirst) {
+//     } else {
+//         req.session!.notFirst = true;
+//         // @ts-ignore
+//         sessionsData[req.sessionID!.toString()] = {
+//             startTime: -1,
+//             endTime: -1,
+//             graph: [],
+//             goalPage: null,
+//             startPage: null,
+//             username: "Anonymous",
+//         };
+//     }
+//
+//     next();
+// });
 
 /* GET api home page. */
 router.get('/', function (req, res) {
@@ -51,6 +60,7 @@ router.get('/random', function (req, res) {
 
 /* Notify the start of a game */
 router.get('/start', async function (req, res) {
+    console.log(req.query);
     let pages = {startPage: "", goalPage: ""};
     pages.startPage = await fetchRandomPage();
     pages.goalPage = await fetchRandomPage();
@@ -61,6 +71,7 @@ router.get('/start', async function (req, res) {
         graph: [],
         goalPage: pages.goalPage,
         startPage: pages.startPage,
+        username: req.query.username ? req.query.username: "Anon",
     };
 
     res.send(pages);

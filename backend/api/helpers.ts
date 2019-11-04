@@ -1,20 +1,28 @@
 import fetch from "node-fetch";
-import {act} from "react-dom/test-utils";
-import {wikipediaRestHtmlUrl, wikipediaUrl} from "../../env";
+import {apiUrl, wikipediaRestHtmlUrl, wikipediaUrl} from "../../env";
+import {serverData, sessionsData} from "./index";
 
+
+export function createGraph(array: string[]) {
+    if (!array.length) {
+        return null;
+    }
+    let graph = "digraph res {";
+    graph += `"${array[0]}" [shape=cds];`;
+    graph += `"${array[array.length - 1]}" [shape=rectangle];`;
+
+    for (let i = 0; i < array.length - 1; i++) {
+        graph += `"${array[i]}" -> "${array[i+1]}";`;
+
+    }
+    graph += "}";
+    return graph;
+}
 
 export function getTitle(url: string): string { //this get everything after the last "/"
     const regex = /\/([^\/]*)$/;
     const res = regex.exec(url);
     return res ? res[1] : "";
-}
-
-const noCache = "<meta http-equiv=\"cache-control\" content=\"max-age=0\" /><meta http-equiv=\"cache-control\" content=\"no-cache\" /><meta http-equiv=\"expires\" content=\"0\" /><meta http-equiv=\"expires\" content=\"Tue, 01 Jan 1980 1:00:00 GMT\" /><meta http-equiv=\"pragma\" content=\"no-cache\" />";
-function disableCaching(html: string): string {
-    const regex = /<\s*head\s*.*?>/ig;
-    const head = regex.exec(html);
-    html = html.replace(head![0], head![0] + noCache);
-    return html;
 }
 
 function removeBase(html: string): string { //this removes the <base/> tags so the links now fetch on the "man in the middle" server
@@ -36,10 +44,20 @@ export let actualName = {
     }
 };
 
-export function getWikiPage(pagename: string): Promise<string> {
+export function getWikiPage(pagename: string, sessionID: string): Promise<string> {
     return fetch(`${wikipediaRestHtmlUrl}${pagename}`)
         .then(res => {
-            actualName.pagename = getTitle(res.url);//Put the name after redirection into "actualName"
+            const pagename = getTitle(res.url);
+            // @ts-ignore FIXME
+            sessionsData[sessionID].graph.push(pagename);
+            // @ts-ignore FIXME
+            if (sessionsData[sessionID].goalPage === pagename) { //check win condition
+                // @ts-ignore FIXME
+                sessionsData[sessionID].endTime = new Date().getTime();
+                // @ts-ignore FIXME
+                serverData.scores.push({...sessionsData[sessionID], ID : sessionID});
+            }
+            actualName.pagename = pagename;//Put the name after redirection into "actualName"
             actualName.notify();// Push the actual page name to the front
             return res.text()
         })

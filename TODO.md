@@ -14,6 +14,7 @@
 - [ ] User profiles or at least anonymous sessions
 - [ ] Online room set up with invitations
 - [ ] Online room set up with randoms
+- [ ] Add difficulty levels
 
 ##Anti-cheat
 - [ ] Think about and find a solution to prevent javascript/html injection (Maybe check for no jump of links with api that gives links to the page)
@@ -26,5 +27,7 @@
 - [x] some character still seem to pose parsing/URL problems
 - [x] Disable caching in iframe
 - [ ] Remove previous page options on game start (clear iframe history)
+- [ ] Put one session per tab to prevent multiple tabs to interfere with another
+- [ ] Check if page is orphaned
 
 

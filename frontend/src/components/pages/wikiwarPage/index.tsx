@@ -5,12 +5,17 @@ import {Button, Typography, withStyles} from "@material-ui/core";
 import Timer from "./timer";
 import {styles} from "../../../../static/wikiwar-style";
 import {apiUrl, wikipediaUrl} from "../../../../../env";
-import {getRandomPageName, sseInit} from "../../../helpers";
+import {getRandomPageName, remoteStart, sseInit} from "../../../helpers";
 
 interface IWikiwarPageProps {
     graphPath: string[],
     setGraphPath: (pagename: any) => void,
     classes: any,
+}
+
+interface IStartResponse {
+    startPage: string,
+    goalPage: string,
 }
 
 const WikiwarPage = (props: IWikiwarPageProps) => {
@@ -27,11 +32,10 @@ const WikiwarPage = (props: IWikiwarPageProps) => {
     const [currentPage, setCurrentPage] = React.useState(null);
 
     const startGame = async () => {
-        let pageName: string = await getRandomPageName();
-        setStartPage(pageName);
-        setCurrentPage(pageName);
-        pageName = await getRandomPageName();
-        setGoalPage(pageName);
+        let init : IStartResponse = JSON.parse(await remoteStart());
+        setStartPage(init.startPage);
+        setCurrentPage(init.startPage);
+        setGoalPage(init.goalPage);
         // @ts-ignore FIXME
         timerRef.current.start();
     };

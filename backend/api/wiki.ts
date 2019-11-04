@@ -7,16 +7,11 @@ const router = express.Router();
 
 /* GET wiki home page. */
 router.get('/', (req, res) => {
-    if (req.session!.page_views) {
-        req.session!.page_views++;
-    } else {
-        req.session!.page_views = 1;
-    }
-    res.send({route: "wiki home" + req.session!.page_views});
+    res.send({route: "wiki home"});
 });
 
 router.get('/:pagename(*)', (req, res) => {
-    getWikiPage(encodeURIComponent(req.params.pagename))
+    getWikiPage(encodeURIComponent(req.params.pagename), req.sessionID!)
         .then((html: string) => {
             res.header("Cache-Control", "no-cache, no-store");
             res.header("Pragma", "no-cache");

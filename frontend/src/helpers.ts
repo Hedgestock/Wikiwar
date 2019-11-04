@@ -5,6 +5,11 @@ export function getRandomPageName(): Promise<string> {
         .then(res => res.text());
 }
 
+export function remoteStart(): Promise<string> {
+    return fetch(`${apiUrl}start`)
+        .then(res => res.text());
+}
+
 export function sseInit(setCurrentPage: (pagename: any) => void) {
     if (!!window.EventSource) {
         const source = new EventSource(`${apiUrl}event_stream`);
@@ -25,4 +30,8 @@ export function sseInit(setCurrentPage: (pagename: any) => void) {
             }
         }, false)
     }
+}
+export async function getScores(){
+    return await fetch(`${apiUrl}scores`)
+        .then(res => res.json());
 }

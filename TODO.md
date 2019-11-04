@@ -7,7 +7,7 @@
 - [x] Set-up a server to hide the Iframe behavior and track user journey
 - [ ] Graph of pages gone through
 - [ ] Graphviz
-- [ ] Leaderboard
+- [x] Leaderboard
 - [ ] Options to manually set the start and goal pages
 - [ ] Number of click mode
 - [ ] Number of pages opened mode
@@ -17,9 +17,9 @@
 - [ ] Add difficulty levels
 
 ##Anti-cheat
-- [ ] Think about and find a solution to prevent javascript/html injection (Maybe check for no jump of links with api that gives links to the page)
-- [ ] Think about and find a solution to prevent false timer with javascript/html injection
-- [ ] Add user sessions
+- [x] Think about and find a solution to prevent javascript/html injection (Maybe check for no jump of links with api that gives links to the page)
+- [x] Think about and find a solution to prevent false timer with javascript/html injection
+- [x] Add user sessions
 
 
 #TOFIX

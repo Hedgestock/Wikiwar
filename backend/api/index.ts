@@ -2,12 +2,14 @@ import express from "express"
 import session from "express-session"
 
 import wiki from "./wiki";
+import users from "./users";
 import {actualName, fetchRandomPage} from "./helpers";
 
 const router = express.Router();
 
 router.use(session({secret: "wikiwarscrt"}));
 router.use('/wiki', wiki);
+router.use('/users', users);
 
 export let sessionsData = {};
 export let serverData = {

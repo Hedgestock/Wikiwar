@@ -5,6 +5,11 @@ import {getWikiPage} from "./helpers";
 const router = express.Router();
 
 
+router.get('/', (req, res, next) => {
+    res.header( "User-Agent","arthur.pamart@epita.fr");
+    next();
+});
+
 /* GET wiki home page. */
 router.get('/', (req, res) => {
     res.send({route: "wiki home"});

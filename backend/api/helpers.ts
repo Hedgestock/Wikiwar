@@ -1,5 +1,5 @@
 import fetch from "node-fetch";
-import {apiUrl, wikipediaRestHtmlUrl, wikipediaUrl} from "../../env";
+import {wikipediaRestHtmlUrl, wikipediaUrl} from "../../env";
 import {serverData, sessionsData} from "./index";
 
 
